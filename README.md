@@ -65,6 +65,8 @@ plt.show()
 ```
 ### Output:
 <img width="933" height="700" alt="image" src="https://github.com/user-attachments/assets/87cadb39-f507-47ec-bcc5-3bae214e2156" />
+<img width="898" height="686" alt="image" src="https://github.com/user-attachments/assets/0df289cf-4a57-48ec-a7bb-1109a23bda31" />
+
 
 ### Result:
 Implementation of Cluster and Visitor Segmentation for navigation patterns was executed successfully.
