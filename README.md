@@ -15,35 +15,56 @@
 
 ### Program:
 ```python
-# Visitor segmentation based on characteristics
-# read the data
-/*WRITE YOUR CODE HERE
+from google.colab import files
+uploaded = files.upload()
 
-# Perform segmentation based on characteristics (e.g., age groups)
-/*WRITE YOUR CODE HERE
+import pandas as pd
+df = pd.read_csv(list(uploaded.keys())[0])
 
+X = df[["Age", "Income"]]
+
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=3, random_state=42)
+df["Cluster"] = kmeans.fit_predict(X_scaled)
+
+df[["Age", "Income", "Cluster"]]
 ```
 ### Output:
+<img width="1740" height="729" alt="image" src="https://github.com/user-attachments/assets/8317b925-9fa7-423e-b44a-7fcda0b11e2d" />
 
 ### Visualization:
 ```python
-# Create a list to store counts of visitors in each age group
-/*WRITE YOUR CODE HERE
+def classify_age(age):
+    if age <= 30:
+        return "Young"
+    elif age < 50:
+        return "Middle"
+    else:
+        return "Old"
 
-# Count visitors in each age group
-/*WRITE YOUR CODE HERE
-    
-# Define age group labels and plot a bar chart
-/*WRITE YOUR CODE HERE
+df["Age_Group"] = df["Age"].apply(classify_age)
+import matplotlib.pyplot as plt
+
+labels = ["Young", "Middle", "Old"]
+counts = [
+    (df["Age_Group"] == "Young").sum(),
+    (df["Age_Group"] == "Middle").sum(),
+    (df["Age_Group"] == "Old").sum()
+]
 
 plt.figure(figsize=(8, 6))
-plt.bar(age_group_labels, visitor_counts, color='skyblue')
-plt.xlabel('Age Groups')
-plt.ylabel('Number of Visitors')
-plt.title('Visitor Distribution Across Age Groups')
+plt.bar(labels, counts)
+plt.xlabel("Age Groups")
+plt.ylabel("Number of Visitors")
+plt.title("Visitor Distribution Across Age Groups")
 plt.show()
 ```
 ### Output:
-
+<img width="933" height="700" alt="image" src="https://github.com/user-attachments/assets/87cadb39-f507-47ec-bcc5-3bae214e2156" />
 
 ### Result:
+Implementation of Cluster and Visitor Segmentation for navigation patterns was executed successfully.
